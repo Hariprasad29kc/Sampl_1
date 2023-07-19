@@ -1,0 +1,27 @@
+version: 2
+
+sources:
+  - name: PRO2
+    database: RAW2
+    schema: PUBLIC
+    tables:
+      - name: USERS1 
+        tests:
+        - is_even         
+      - name: USERS2
+        tests:
+        - is_even
+
+  - name: Pro55
+    database: RAW
+    schema: DBT_HPRASAD
+    tables:
+      - name: customer23
+
+  - name: Pro67
+    database: SNOWFLAKE_SAMPLE_DATA
+    schema: TPCH_SF10
+    tables:
+      - name: ORDERS
+        tests:
+          - above_months

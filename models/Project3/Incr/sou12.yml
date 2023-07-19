@@ -1,0 +1,10 @@
+version: 2
+
+sources:
+  - name: incre2
+    database: Raw
+    schema: DBT_HPRASAD
+    tables:
+      - name: CUSTOMER23
+models: 
+      - name: CUSTOMER24

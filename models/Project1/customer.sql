@@ -1,10 +1,12 @@
 {{
     config(
-        materialized = 'view'
+        materialized = 'table'
     )
 }}
 
 
 with customer as (
-    select * from {{ source('SNOWFLAKE_SAMPLE_DATA', 'CUSTOMER') }}
+    select * from {{ source('Pro23', 'CUSTOMER') }}
 )
+
+select * from customer

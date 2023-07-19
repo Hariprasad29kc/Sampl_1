@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: stg_cust
+    description: Staged customer data from Snowflake Sample data.
+    columns:
+      - name: C_CUSTKEY
+        description: Primary key for customer
+        tests:
+          - unique
+          - not_null
+  - name: stg_ord
+    description: Staged order data from Snowflake Sample data.
+    columns:
+      - name: O_ORDERKEY
+        description: Primary key for order
+        tests:
+          - unique
+          - not_null
+      - name: O_CUSTKEY
+        description: Foregin key to stg_cust.C_CUSTKEY
+        tests:
+          - relationships:
+              to: ref('stg_cust')
+              field: C_CUSTKEY

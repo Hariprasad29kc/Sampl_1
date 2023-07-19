@@ -1,0 +1,19 @@
+version: 2
+
+sources:
+  - name: snapshot1
+    database: SNOWFLAKE_SAMPLE_DATA
+    schema: TPCH_SF1
+    tables:
+      - name: CUSTOMER
+      - name: LINEITEM
+      - name: NATION
+      - name: ORDERS
+      - name: PART
+      - name: PARTSUPP
+      - name: REGION
+      - name: SUPPLIER
+
+#models:
+#  - name: stg_cust
+#  - name: stg_ord

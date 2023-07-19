@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: us1
+    columns:
+      - name: FAV_NUMER
+        tests:
+          - is_even
+
+  - name: US2
+    columns:
+      - name: FAV_NUMER
+        tests:
+          - is_even
+
+  - name: cust23
+    columns:
+      - name: ORDER_DATE
+        tests:
+          - above_months
+
+  - name: sou_ord
+    columns:
+      - name: O_ORDERDATE
+        tests:
+        - unique
+          

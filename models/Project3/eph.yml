@@ -1,0 +1,16 @@
+version: 2
+
+sources:
+  - name: Pro23
+    database: SNOWFLAKE_SAMPLE_DATA
+    schema: TPCH_SF10 
+    tables:
+      - name: CUSTOMER
+      - name: LINEITEM
+      - name: NATION
+      - name: ORDERS
+      - name: PART
+      - name: PARTSUPP
+      - name: REGION
+      - name: SUPPLIER
+    

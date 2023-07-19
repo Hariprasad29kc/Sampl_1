@@ -7,9 +7,19 @@ sources:
     tables:
       - name: CUSTOMER
       - name: LINEITEM
+        columns:
+          - name: L_PARTKEY
+            tests:
+              - unique
+              - not_null
+          
       - name: NATION
       - name: ORDERS
+        columns:
+          - name: O_ORDERDATE
+            tests:
+            - above_months      
       - name: PART
       - name: PARTSUPP
       - name: REGION
-      - name: SUPPLIER
+      - name: SUPPLIE
