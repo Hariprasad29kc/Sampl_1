@@ -1,2 +1,25 @@
-hi
-hi
+# Setup of environment parameters
+list_env = ['dev', 'test']
+list_developers = ['sananii', 'dieteal', '']
+dbutils.widgets.text('Branch', '')
+dbutils.widgets.text('Feature', '')
+dbutils.widgets.dropdown('Environment', 'dev', list_env)
+dbutils.widgets.dropdown('Developer', '', list_developers)
+
+
+
+# Generate db suffix from widgets
+db_suffix = '_{}_{}'.format(dbutils.widgets.get('Developer'), dbutils.widgets.get('Environment'))
+if dbutils.widgets.get('Branch') != '':
+ db_suffix = '{}_{}'.format(db_suffix, dbutils.widgets.get('Branch'))
+ 
+if dbutils.widgets.get('Feature') != '':
+ db_suffix = '{}_{}'.format(db_suffix, dbutils.widgets.get('Feature'))
+# Create database if it does not exist yet
+spark.sql('CREATE DATABASE IF NOT EXISTS users_data{};'.format(db_suffix))
+# Generate sample data for testing
+sample_data = [('user1', 20), ('user2', 29), ('user3', 42)]
+schema = 'name: string, age: int'
+df = spark.createDataFrame(sample_data, schema=schema)
+# Write data to table
+df.write.mode('overwrite').saveAsTable('users_data{}.main_table'.format(db_suffix))
