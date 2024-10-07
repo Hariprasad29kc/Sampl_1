@@ -1,12 +1,4 @@
-trigger:
-  branches:
-    include:
-      - main
 
-pr:
-  branches:
-    include:
-      - main
 
 # This pipeline will only run when issues are created in GitHub
 resources:
@@ -45,6 +37,6 @@ jobs:
                       "System.WorkItemType": "Bug"
                     }
                   }' \
-              https://dev.azure.com/DevOps1290/SAFe_Support_POC/_apis/wit/workitems/$Bug?api-version=6.0
+              https://dev.azure.com/DevOps1290/SAFe_Support_POC/_apis/wit/workitems/\$Bug?api-version=6.0
 
 
