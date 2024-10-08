@@ -19,9 +19,9 @@ jobs:
             issue_body="Issue details for $(Build.SourceBranchName)"
 
             # Create Bug Task in Azure DevOps using REST API
-            curl -X POST \
-              -H "Content-Type: application/json" \
-              -H "Authorization: Bearer $(AZURE_DEVOPS_PAT)" \
+              curl -u :$(AZURE_DEVOPS_PAT) \
+              -X POST \
+              -H "Content-Type: application/json-patch+json" \
               -d '{
                     "fields": {
                       "System.Title": "'"$issue_title"'",
