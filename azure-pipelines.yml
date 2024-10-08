@@ -1,4 +1,4 @@
-trigger: none   # Disable branch-based triggers
+trigger: none   # No branch triggers
 
 pr: none
 
@@ -18,18 +18,23 @@ jobs:
             issue_title="GitHub Issue: $(Build.SourceBranchName)"
             issue_body="Issue details for $(Build.SourceBranchName)"
 
-            echo "Creating a bug in Azure DevOps from GitHub issue"
-
             # Create Bug Task in Azure DevOps using REST API
-            curl -X POST \
-              -H "Content-Type: application/json" \
-              -H "Authorization: Bearer $(AZURE_DEVOPS_PAT)" \
-              -d '{
-                    "fields": {
-                      "System.Title": "'"$issue_title"'",
-                      "System.Description": "'"$issue_body"'",
-                      "System.WorkItemType": "Bug"
-                    }
-                  }' \
-              https://dev.azure.com/DevOps1290/SAFe_Support_POC/_apis/wit/workitems/\$Bug?api-version=6.0
-
+            curl -u :$(AZURE_DEVOPS_PAT) \
+              -X POST \
+              -H "Content-Type: application/json-patch+json" \
+              -d '[{
+                    "op": "add",
+                    "path": "/fields/System.Title",
+                    "value": "'"$issue_title"'"
+                  },
+                  {
+                    "op": "add",
+                    "path": "/fields/System.Description",
+                    "value": "'"$issue_body"'"
+                  },
+                  {
+                    "op": "add",
+                    "path": "/fields/System.WorkItemType",
+                    "value": "Bug"
+                  }]' \
+              https://dev.azure.com/DevOps1290/SAFe_Support_POC/_apis/wit/workitems/\$Bug?api-version=7.0
