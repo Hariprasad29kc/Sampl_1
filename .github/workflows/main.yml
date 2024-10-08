@@ -1,0 +1,18 @@
+# .github/workflows/trigger-azure-pipeline.yml
+name: Trigger Azure Pipeline on Issue Creation
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  triggerAzurePipeline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Azure Pipeline
+        run: |
+          curl -X POST \
+            -H "Content-Type: application/json" \
+            -H "Authorization: Basic ${{ secrets.AZURE_DEVOPS_PAT }}" \
+            -d '{}' \
+            https://dev.azure.com/DevOps1290/SAFe_Support_POC/_apis/pipelines/2/runs?api-version=6.0
