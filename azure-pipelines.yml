@@ -1,7 +1,4 @@
-trigger:
-  branches:
-    include:
-      - main  # This can be any branch you'd like to trigger the pipeline on
+trigger: none   # This can be any branch you'd like to trigger the pipeline on
 
 pr: none
 
