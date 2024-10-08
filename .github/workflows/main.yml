@@ -13,6 +13,6 @@ jobs:
         run: |
           curl -X POST \
             -H "Content-Type: application/json" \
-            -H "Authorization: Basic $(echo -n ":6wi6b2bzpl4fvicon7qrjvrkmvva3pqztxqnfpxgytaxhsd3fpwq" | base64)" \
+            -H "Authorization: Basic $(echo -n ":${{ secrets.AZURE_DEVOPS_PAT }}" | base64)" \
             -d '{}' \
             https://dev.azure.com/DevOps1290/SAFe_Support_POC/_apis/pipelines/2/runs?api-version=6.0
